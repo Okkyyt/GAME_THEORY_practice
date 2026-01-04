@@ -31,10 +31,19 @@ class Bertrand:
 
 # 同質財ベルトラン競争
 class Homogeneous_goods(Bertrand):
-    def equilibrium(self):
+    def strategy(self):
         """
         均衡点の計算
-        同質財ベルトラン競争における均衡価格は限界費用に等しい
         """
-        p_eq = max(self.P1.c, self.P2.c)
-        return round(p_eq, 3), round(p_eq, 3)
+        # 価格が低いほうが市場を独占する
+        if self.P1.p > self.P2.p:
+            pai2 = self.P2.profit(self.M, self.P1.p)
+            return 0.0, round(pai2, 3)
+        elif self.P2.p > self.P1.p:
+            pai1 = self.P1.profit(self.M, self.P2.p)
+            return round(pai1, 3), 0.0
+        # もし両者の価格が等しければ、両者は市場を半分ずつ分け合う
+        else:
+            pai1 = self.P1.profit(self.M, self.P2.p)
+            pai2 = self.P2.profit(self.M, self.P1.p)
+            return round(pai1, 3), round(pai2, 3)
