@@ -31,9 +31,9 @@ class Bertrand:
 
 # 同質財ベルトラン競争
 class Homogeneous_goods(Bertrand):
-    def strategy(self):
+    def profit(self):
         """
-        均衡点の計算
+        利得の計算
         """
         # 価格が低いほうが市場を独占する
         if self.P1.p > self.P2.p:
