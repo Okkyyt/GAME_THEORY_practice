@@ -1,9 +1,10 @@
 # 数量競争モデルの実装
 import pandas as pd
 
+
 class Market:
     def __init__(self, a, b):
-        self.a = a 
+        self.a = a
         self.b = b
         self.c1 = None
         self.c2 = None
@@ -13,7 +14,8 @@ class Market:
         価格式: P = a - bQ
         """
         return self.a - self.b * Q
-    
+
+
 class Player:
     def __init__(self, q: float, c: float):
         self.q = q  # 生産量
@@ -27,7 +29,7 @@ class Player:
         Q = self.q + q_other
         P = M.price(Q)
         return (P - self.c) * self.q
-    
+
     def optimal_react(self, M: Market, q_other: float) -> float:
         """
         最適反応関数
@@ -37,7 +39,8 @@ class Player:
         """
         q = (M.a - self.c - M.b * q_other) / (2 * M.b)
         return max(q, 0)  # 生産量は非負
-    
+
+
 class Cournot:
     def __init__(self, M: Market, P1: Player, P2: Player):
         self.M = M
@@ -55,9 +58,10 @@ class Cournot:
             if abs(q1_new - q1) < tol and abs(q2_new - q2) < tol:
                 break
             q1, q2 = q1_new, q2_new
-    
+
         return round(q1, 3), round(q2, 3)
-    
+
+
 def main():
     # 市場パラメータ
     a = 100
@@ -80,6 +84,7 @@ def main():
     Q = q1_eq + q2_eq
     P = M.price(Q)
     print(f"市場合計Q = {Q}, 価格P = {P}")
+
 
 if __name__ == "__main__":
     main()

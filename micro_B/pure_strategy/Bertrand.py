@@ -5,6 +5,7 @@ class Market:
 
     # 需要関数を変形： Q = (a - P) / b
 
+
 class Player:
     def __init__(self, p: float, c: float):
         self.p = p  # 価格
@@ -22,12 +23,14 @@ class Player:
         Q_other = (M.a - p_other) / M.b
         q = Q - Q_other
         return (self.p - self.c) * q
-    
+
+
 class Bertrand:
     def __init__(self, M: Market, P1: Player, P2: Player):
         self.M = M
         self.P1 = P1
         self.P2 = P2
+
 
 # 同質財ベルトラン競争
 class Homogeneous_goods(Bertrand):
